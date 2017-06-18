@@ -15,5 +15,9 @@ class standardBill(val purchasedItems: List[menuItem]) {
 
   def purchasedHotFood : Boolean = purchasedItems.filter(_.isDrink == false).exists(_.isHot == true)
 
-  def serviceChargePercentage : Double = 0.0
+  def serviceChargePercentage : Double = {
+    if (purchasedDrinksOnly.equals(true)) 0
+    else if (purchasedHotFood.equals(true)) 20
+    else 10
+  }
 }
