@@ -13,5 +13,5 @@ class standardBill(val purchasedItems: List[menuItem]) {
 
   def purchasedDrinksOnly : Boolean = purchasedItems.map(_.isDrink).forall(_ == true)
 
-  def purchasedHotFood : Boolean = false
+  def purchasedHotFood : Boolean = purchasedItems.filter(_.isDrink == false).exists(_.isHot == true)
 }
