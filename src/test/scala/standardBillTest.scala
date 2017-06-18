@@ -20,4 +20,14 @@ class standardBillTest extends FunSuite {
     assert(standBill.calculatePurchasedItemsCost == 1.5)
   }
 
+  test("Return true if purchased items only contains drinks") {
+    val myStandardBill = standardBill(Array("Cola", "Coffee"))
+    assert(myStandardBill.purchasedDrinksOnly.equals(true))
+  }
+
+  test("Return false if purchased items contains food") {
+    val myStandardBill = standardBill(Array("Cola", "Coffee", "Cheese Sandwich"))
+    assert(myStandardBill.purchasedDrinksOnly.equals(false))
+  }
+
 }
