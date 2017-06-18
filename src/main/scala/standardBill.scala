@@ -11,11 +11,12 @@ object standardBill {
 
 class standardBill(val purchasedItems: List[menuItem]) {
 
+  val purchasedDrinksOnly : Boolean = purchasedItems.map(_.isDrink).forall(_ == true)
+
+  val purchasedHotFood : Boolean = purchasedItems.filter(_.isDrink == false).exists(_.isHot == true)
+
   def calculatePurchasedItemsCost : BigDecimal = purchasedItems.map(_.price).sum
 
-  def purchasedDrinksOnly : Boolean = purchasedItems.map(_.isDrink).forall(_ == true)
-
-  def purchasedHotFood : Boolean = purchasedItems.filter(_.isDrink == false).exists(_.isHot == true)
 
   def serviceChargePercentage : Double = {
     if (purchasedDrinksOnly.equals(true)) 0
@@ -23,15 +24,15 @@ class standardBill(val purchasedItems: List[menuItem]) {
     else 10
   }
 
-  def calcluateBillWithServiceCharge : Double = {
-    val itemsCost = calculatePurchasedItemsCost
-    val serviceCharge = serviceChargePercentage
-    val serviceChargePrice = CalculateServiceChargeCost(itemsCost, serviceCharge)
+  def calculateBillWithServiceCharge : Double = {
+    val purchasedItemsCost = calculatePurchasedItemsCost
+    val serviceChargeInPercentage = serviceChargePercentage
+    val serviceChargeCost = calculateServiceChargeCost(purchasedItemsCost, serviceChargeInPercentage)
     val df = new DecimalFormat("#.##")
-    df.format(itemsCost + serviceChargePrice).toDouble
+    df.format(purchasedItemsCost + serviceChargeCost).toDouble
   }
 
-  private def CalculateServiceChargeCost(itemsPrice: BigDecimal, serviceChargePercentage: Double) : BigDecimal = {
+  private def calculateServiceChargeCost(itemsPrice: BigDecimal, serviceChargePercentage: Double) : BigDecimal = {
     val serviceCharge = itemsPrice * (serviceChargePercentage/100)
     if (serviceCharge > 20) 20 else serviceCharge
   }

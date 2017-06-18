@@ -15,7 +15,7 @@ class standardBillTest extends FunSuite {
     assert(myStandardBill.purchasedItems == expectedPurchasedItem)
   }
 
-  test("Correctly Sum total cost of purchased items") {
+  test("Sum the total cost of purchased items") {
     val standBill = standardBill(Array("Cola", "Coffee"))
     assert(standBill.calculatePurchasedItemsCost == 1.5)
   }
@@ -40,23 +40,23 @@ class standardBillTest extends FunSuite {
     assert(myStandardBill.purchasedHotFood.equals(true))
   }
 
-  test("Return correct service charge") {
+  test("Return correct service charge in percentage") {
     val onlyDrinks = standardBill(Array("Cola", "Coffee"))
-    val drinkwithColdFood = standardBill(Array("Cola", "Cheese Sandwich"))
-    val drinkwithHotFood = standardBill(Array("Cola",  "Steak Sandwich"))
+    val drinkWithColdFood = standardBill(Array("Cola", "Cheese Sandwich"))
+    val drinkWithHotFood = standardBill(Array("Cola",  "Steak Sandwich"))
 
     assert(onlyDrinks.serviceChargePercentage == 0)
-    assert(drinkwithColdFood.serviceChargePercentage == 10)
-    assert(drinkwithHotFood.serviceChargePercentage == 20)
+    assert(drinkWithColdFood.serviceChargePercentage == 10)
+    assert(drinkWithHotFood.serviceChargePercentage == 20)
   }
 
-  test("Calculate total bill with service charge Price") {
+  test("Calculate total bill cost with correct service charge") {
     val onlyDrinks = standardBill(Array("Cola", "Coffee"))
-    val drinkwithColdFood = standardBill(Array("Cola", "Cheese Sandwich"))
-    val drinkwithHotFood = standardBill(Array("Cola", "Coffee", "Cheese Sandwich", "mSteak Sandwich"))
+    val drinkWithColdFood = standardBill(Array("Cola", "Cheese Sandwich"))
+    val drinkWithHotFood = standardBill(Array("Cola", "Coffee", "Cheese Sandwich", "Steak Sandwich"))
 
-    assert(onlyDrinks.calcluateBillWithServiceCharge == 1.5)
-    assert(drinkwithColdFood.calcluateBillWithServiceCharge == 2.75)
-    assert(drinkwithHotFood.calcluateBillWithServiceCharge == 9.6)
+    assert(onlyDrinks.calculateBillWithServiceCharge == 1.5)
+    assert(drinkWithColdFood.calculateBillWithServiceCharge == 2.75)
+    assert(drinkWithHotFood.calculateBillWithServiceCharge == 9.6)
   }
 }
