@@ -40,4 +40,14 @@ class standardBillTest extends FunSuite {
     assert(myStandardBill.purchasedHotFood.equals(true))
   }
 
+  test("Return correct service charge") {
+    val onlyDrinks = standardBill(Array("Cola", "Coffee"))
+    val drinkwithColdFood = standardBill(Array("Cola", "Cheese Sandwich"))
+    val drinkwithHotFood = standardBill(Array("Cola",  "Steak Sandwich"))
+
+    assert(onlyDrinks.serviceChargePercentage == 0)
+    assert(drinkwithColdFood.serviceChargePercentage == 10)
+    assert(drinkwithHotFood.serviceChargePercentage == 20)
+  }
+
 }
