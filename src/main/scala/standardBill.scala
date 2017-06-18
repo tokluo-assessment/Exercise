@@ -12,4 +12,6 @@ class standardBill(val purchasedItems: List[menuItem]) {
   def calculatePurchasedItemsCost : BigDecimal = purchasedItems.map(_.price).sum
 
   def purchasedDrinksOnly : Boolean = purchasedItems.map(_.isDrink).forall(_ == true)
+
+  def purchasedHotFood : Boolean = false
 }

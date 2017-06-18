@@ -30,4 +30,14 @@ class standardBillTest extends FunSuite {
     assert(myStandardBill.purchasedDrinksOnly.equals(false))
   }
 
+  test("Return true if purchased items contains hot food") {
+    val myStandardBill = standardBill(Array("Cola", "Coffee", "Cheese Sandwich"))
+    assert(myStandardBill.purchasedHotFood.equals(false))
+  }
+
+  test("Return false if purchased items do not contains hot food") {
+    val myStandardBill = standardBill(Array("Cola", "Coffee", "Steak Sandwich"))
+    assert(myStandardBill.purchasedHotFood.equals(true))
+  }
+
 }
