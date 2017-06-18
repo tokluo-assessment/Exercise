@@ -1,3 +1,5 @@
+import java.text.DecimalFormat
+
 /**
   * standard Bill to calculate total bill
   */
@@ -21,6 +23,16 @@ class standardBill(val purchasedItems: List[menuItem]) {
     else 10
   }
 
-  def calcluateBillWithServiceCharge : Double = 0.0
+  def calcluateBillWithServiceCharge : Double = {
+    val itemsCost = calculatePurchasedItemsCost
+    val serviceCharge = serviceChargePercentage
+    val serviceChargePrice = CalculateServiceChargeCost(itemsCost, serviceCharge)
+    val df = new DecimalFormat("#.##")
+    df.format(itemsCost + serviceChargePrice).toDouble
+  }
 
+  private def CalculateServiceChargeCost(itemsPrice: BigDecimal, serviceChargePercentage: Double) : BigDecimal = {
+    val serviceCharge = itemsPrice * (serviceChargePercentage/100)
+    if (serviceCharge > 20) 20 else serviceCharge
+  }
 }
