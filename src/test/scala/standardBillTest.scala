@@ -14,4 +14,10 @@ class standardBillTest extends FunSuite {
 
     assert(myStandardBill.purchasedItems == expectedPurchasedItem)
   }
+
+  test("Correctly Sum total cost of purchased items") {
+    val standBill = standardBill(Array("Cola", "Coffee"))
+    assert(standBill.calculatePurchasedItemsCost == 3.5)
+  }
+
 }

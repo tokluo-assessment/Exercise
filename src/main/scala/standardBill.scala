@@ -9,4 +9,6 @@ object standardBill {
 
 class standardBill(val purchasedItems: List[menuItem]) {
 
+  def calculatePurchasedItemsCost : BigDecimal = 0.0
+
 }
