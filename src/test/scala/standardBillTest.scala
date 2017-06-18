@@ -54,9 +54,11 @@ class standardBillTest extends FunSuite {
     val onlyDrinks = standardBill(Array("Cola", "Coffee"))
     val drinkWithColdFood = standardBill(Array("Cola", "Cheese Sandwich"))
     val drinkWithHotFood = standardBill(Array("Cola", "Coffee", "Cheese Sandwich", "Steak Sandwich"))
+    val max20ServiceCharge = standardBill(Array("X"))
 
     assert(onlyDrinks.calculateBillWithServiceCharge == 1.5)
     assert(drinkWithColdFood.calculateBillWithServiceCharge == 2.75)
     assert(drinkWithHotFood.calculateBillWithServiceCharge == 9.6)
+    assert(max20ServiceCharge.calculateBillWithServiceCharge == 220)
   }
 }

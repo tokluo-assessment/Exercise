@@ -6,7 +6,9 @@ import java.text.DecimalFormat
 
 
 object standardBill {
-  def apply(purcachedItems: Array[String]) = new standardBill(cafeXMenu.MenuItems.filter( item => purcachedItems.contains(item.name)))
+  def apply(purcachedItems: Array[String]) = new standardBill(
+    purcachedItems.flatMap(item => cafeXMenu.MenuItems.filter(_.name == item) ).toList
+  )
 }
 
 class standardBill(val purchasedItems: List[menuItem]) {
