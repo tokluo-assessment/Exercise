@@ -20,4 +20,7 @@ class standardBill(val purchasedItems: List[menuItem]) {
     else if (purchasedHotFood.equals(true)) 20
     else 10
   }
+
+  def calcluateBillWithServiceCharge : Double = 0.0
+
 }
